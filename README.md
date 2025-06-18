@@ -30,3 +30,9 @@ Make sure the base URL of your REST API is correctly set in:
 npm run test
 
 ```
+
+### Screenshots
+
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image.png)
