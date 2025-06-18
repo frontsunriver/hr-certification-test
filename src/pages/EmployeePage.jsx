@@ -45,7 +45,7 @@ const RequestForm = () => {
   const today = new Date().toISOString().split('T')[0];
   return (
     <Panel>
-      <h2 className="mb-10 text-gray-100 font-size-md">Certification Request</h2>
+      <h1 className="mb-10 text-gray-100 font-size-xs">Certification Request</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         {/* Description */}
@@ -53,6 +53,7 @@ const RequestForm = () => {
           <InputLabel htmlFor="description"> Description</InputLabel>
           <TextAreaBox
             id="description"
+            placeholder={'Description'}
             {...register('description', {
               required: 'Description is required.',
               // minLength: {
@@ -73,6 +74,7 @@ const RequestForm = () => {
             type="number"
             id="budget"
             name="estimatedBudget"
+            placeholder={'Estimated Budget'}
             step="0.01"
             {...register('estimatedBudget', {
               required: 'Budget is required.',
@@ -127,9 +129,5 @@ const RequestForm = () => {
 };
 
 export default function EmployeePage() {
-  return (
-    <div className="p-6 text-xl">
-      <RequestForm />
-    </div>
-  );
+  return <RequestForm />;
 }
