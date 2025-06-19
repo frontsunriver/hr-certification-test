@@ -5,9 +5,8 @@ import DateInputBox from '../components/DateInputBox';
 import TextAreaBox from '../components/TextAreaBox';
 import Button from '../components/Button';
 import { usePostRequest } from '../hooks/useRequest';
-import Panel from '../components/Panel';
 import { useAuth } from '../contexts/authProvider';
-import { InputLabel } from '../components/Utilities';
+import { InputLabel, Panel } from '../components/Utilities';
 
 const RequestForm = () => {
   const { user } = useAuth();

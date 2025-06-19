@@ -31,7 +31,6 @@ export const usePostRequest = (onSuccess) => {
 
 export const useUpdateRequest = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: ({ id, data }) => {
       updateRequest({ id, data });

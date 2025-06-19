@@ -4,8 +4,7 @@ import Button from '../components/Button';
 import { useAuth } from '../contexts/authProvider';
 import { useNavigate } from 'react-router-dom';
 import InputBox from '../components/InputBox';
-import Panel from '../components/Panel';
-import { InputLabel } from '../components/Utilities';
+import { InputLabel, Panel } from '../components/Utilities';
 
 export default function LoginPage() {
   const { user, login } = useAuth();
@@ -89,7 +88,7 @@ export default function LoginPage() {
           <Button
             type="submit"
             className="mx-auto min-w-[50%]"
-            disabled={isSubmitting}
+            disabled={isSubmitting || Object.keys(errors) > 0}
             aria-busy={isSubmitting}
           >
             {isSubmitting ? 'Logging in...' : 'Login'}

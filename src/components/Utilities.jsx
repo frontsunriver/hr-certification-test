@@ -6,6 +6,16 @@ const InputLabel = ({ className, children, ...props }) => {
   );
 };
 
+const Panel = ({ children, className }) => {
+  return (
+    <div
+      className={`max-w-md mx-auto mt-10 p-6 shadow-lg rounded-2xl bg-gradient-panel ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
+
 const statusColors = {
   draft: 'bg-gray-500 text-white',
   submitted: 'bg-blue-500 text-white',
@@ -24,4 +34,4 @@ const StatusBadge = ({ status }) => {
     </span>
   );
 };
-export { InputLabel, StatusBadge };
+export { InputLabel, StatusBadge, Panel };
