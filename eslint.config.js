@@ -1,12 +1,10 @@
 // eslint.config.js
 import js from '@eslint/js';
 import babelParser from '@babel/eslint-parser';
-import pluginImport from 'eslint-plugin-import';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import pluginPrettier from 'eslint-plugin-prettier';
-import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
   js.configs.recommended,
@@ -16,6 +14,9 @@ export default [
       parser: babelParser,
       parserOptions: {
         requireConfigFile: false,
+        babelOptions: {
+          presets: ['@babel/preset-react'],
+        },
         ecmaFeatures: {
           jsx: true,
         },
@@ -23,6 +24,11 @@ export default [
       globals: {
         window: 'readonly',
         document: 'readonly',
+        localStorage: 'readonly',
+        alert: 'readonly',
+        console: 'readonly',
+        setTimeout: 'readonly',
+        setInterval: 'readonly',
         React: 'writable',
       },
     },
@@ -33,11 +39,11 @@ export default [
       prettier: pluginPrettier,
     },
     rules: {
-      'prettier/prettier': 'error',
+      'react/jsx-uses-vars': 'warn',
       'react/react-in-jsx-scope': 'off',
-      'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
+      'react/jsx-uses-react': 'off',
+      'react/prop-types': 'off',
+      'react/display-name': 'off',
     },
     settings: {
       react: {

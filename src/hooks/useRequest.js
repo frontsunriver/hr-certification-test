@@ -23,7 +23,7 @@ export const useRequests = () => {
   });
 };
 
-export const usePostRequest = (onSuccess) => {
+export const usePostRequest = () => {
   return useMutation({
     mutationFn: postRequest,
   });

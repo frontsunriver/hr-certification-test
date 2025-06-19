@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function SelectBox({ options, className, ...props }) {
   return (
     <select

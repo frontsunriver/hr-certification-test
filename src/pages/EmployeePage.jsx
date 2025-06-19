@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import InputBox from '../components/InputBox';
 import DateInputBox from '../components/DateInputBox';
@@ -20,7 +19,7 @@ const RequestForm = () => {
     mode: 'onBlur',
   });
 
-  const { mutate: postRequest, isError, isSuccess, isPending } = usePostRequest();
+  const { mutate: postRequest, isPending } = usePostRequest();
 
   const onSubmit = (data) => {
     postRequest(

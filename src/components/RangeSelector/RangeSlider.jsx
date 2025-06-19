@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Range } from 'react-range';
 
 export default function RangeSlider({ min, max, values, onChange, step }) {

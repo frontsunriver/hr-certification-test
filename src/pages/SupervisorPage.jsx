@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useRequests, useUpdateRequest } from '../hooks/useRequest';
 import { format } from 'date-fns';
 import InputBox from '../components/InputBox';
@@ -118,7 +118,7 @@ function SupervisorPage() {
                 <RequestCard
                   key={req.id}
                   data={req}
-                  onClick={(e) => {
+                  onClick={() => {
                     reset();
                     setSelectedRequest(req);
                   }}

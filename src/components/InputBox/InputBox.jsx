@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function InputBox({ value, onChange, placeholder, className, ...props }) {
   return (
     <input

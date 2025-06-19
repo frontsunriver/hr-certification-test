@@ -1,4 +1,3 @@
-import React from 'react';
 import { format } from 'date-fns';
 import { StatusBadge } from '../Utilities';
 import DropdownList from '../DropdownList';

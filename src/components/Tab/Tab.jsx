@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 export default function Tab({ options, active, onChange }) {
   return (
     <div className="flex space-x-2 border-b mb-4">
