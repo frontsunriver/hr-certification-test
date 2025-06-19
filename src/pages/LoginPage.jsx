@@ -15,6 +15,7 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
+    clearErrors,
   } = useForm({
     mode: 'onBlur',
   });
@@ -50,6 +51,7 @@ export default function LoginPage() {
               {...register('username', {
                 required: 'Username is required',
                 minLength: { value: 3, message: 'Minimum 3 characters required' },
+                onChange: () => clearErrors('root'),
               })}
             />
             {errors.username && (
@@ -70,6 +72,7 @@ export default function LoginPage() {
               {...register('password', {
                 required: 'Password is required',
                 minLength: { value: 6, message: 'Minimum 6 characters required' },
+                onChange: () => clearErrors('root'),
               })}
             />
             {errors.password && (
@@ -88,7 +91,7 @@ export default function LoginPage() {
           <Button
             type="submit"
             className="mx-auto min-w-[50%]"
-            disabled={isSubmitting || Object.keys(errors) > 0}
+            disabled={isSubmitting || Object.keys(errors).length > 0}
             aria-busy={isSubmitting}
           >
             {isSubmitting ? 'Logging in...' : 'Login'}

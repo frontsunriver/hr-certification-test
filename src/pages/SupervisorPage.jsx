@@ -36,7 +36,7 @@ function SupervisorPage() {
       )
       .sort((a, b) => {
         if (sortKey === 'expectedDate') return new Date(a.expectedDate) - new Date(b.expectedDate);
-        if (sortKey === 'budget') return a.estimatedBudget - b.estimatedBudget;
+        if (sortKey === 'estimatedBudget') return a.estimatedBudget - b.estimatedBudget;
         return 0;
       });
   }, [filters, sortKey, requests, activeTab]);
@@ -104,6 +104,7 @@ function SupervisorPage() {
           }}
         />
       </nav>
+
       <section aria-label="Request Table">
         {/* Requests in Active Tab */}
         {isLoading && <div> Loading...</div>}

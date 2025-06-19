@@ -1,11 +1,37 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 
-import EmployeePage from '../pages/EmployeePage';
+import EmployeePage from './EmployeePage';
 import { AuthProvider } from '../contexts/authProvider';
+
+vi.mock('../contexts/authProvider', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    useAuth: () => ({
+      user: {
+        id: '123',
+        username: 'Test User',
+      },
+    }),
+  };
+});
+
+vi.mock('../hooks/useRequest', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    usePostRequest: () => ({
+      mutate: (data, { onSuccess }) => {
+        onSuccess();
+      },
+      isPending: false,
+    }),
+  };
+});
 
 const renderWithProviders = (ui) => {
   const queryClient = new QueryClient({
@@ -83,5 +109,27 @@ describe('RequestForm Validation', () => {
     await user.click(screen.getByRole('button', { name: /submit/i }));
 
     expect(await screen.findByText(/date must be today or in the future./i)).toBeInTheDocument();
+  });
+
+  it('submit with valid data', async () => {
+    const user = userEvent.setup();
+
+    const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => {});
+
+    await user.type(screen.getByLabelText(/description/i), 'This is a valid test description.');
+    await user.type(screen.getByLabelText(/estimated budget/i), '250');
+
+    const dateInput = screen.getByLabelText(/expected date/i);
+    const today = new Date().toISOString().split('T')[0];
+    await user.clear(dateInput);
+    await user.type(dateInput, today);
+
+    await user.click(screen.getByRole('button', { name: /submit/i }));
+
+    await waitFor(() => {
+      expect(alertMock).toHaveBeenCalledWith('Submitted Successfully');
+    });
+
+    alertMock.mockRestore();
   });
 });

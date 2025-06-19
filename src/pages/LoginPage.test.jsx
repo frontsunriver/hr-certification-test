@@ -9,7 +9,7 @@ import { http } from 'msw';
 import { setupServer } from 'msw/node';
 
 const handlers = [
-  http.post('/api/login', async ({ request }) => {
+  http.post('/login', async ({ request }) => {
     const body = await request.json();
 
     const { username, password } = body;
@@ -66,22 +66,6 @@ const renderWithAuth = () =>
   );
 
 describe('LoginPage Integration Test', () => {
-  it('redirects to /supervisor when carol logs in', async () => {
-    renderWithAuth();
-
-    fireEvent.change(screen.getByLabelText(/username/i), {
-      target: { value: 'carol' },
-    });
-    fireEvent.change(screen.getByLabelText(/password/i), {
-      target: { value: 'adminpass' },
-    });
-    fireEvent.click(screen.getByRole('button', { name: /login/i }));
-
-    await waitFor(() => {
-      expect(screen.getByTestId('location')).toHaveTextContent('/supervisor');
-    });
-  });
-
   it('redirects to /supervisor when carol logs in', async () => {
     renderWithAuth();
 

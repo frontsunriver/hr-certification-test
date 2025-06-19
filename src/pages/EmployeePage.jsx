@@ -60,7 +60,7 @@ const RequestForm = () => {
               // },
             })}
           />
-          {touchedFields.description && errors.description && (
+          {errors.description && (
             <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>
           )}
         </div>
@@ -79,7 +79,7 @@ const RequestForm = () => {
               validate: (value) => parseFloat(value) > 0 || 'Must be a positive number.',
             })}
           />
-          {touchedFields.estimatedBudget && errors.estimatedBudget && (
+          {errors.estimatedBudget && (
             <p className="text-red-500 text-sm mt-1">{errors.estimatedBudget.message}</p>
           )}
         </div>
@@ -110,7 +110,7 @@ const RequestForm = () => {
               />
             )}
           />
-          {touchedFields.expectedDate && errors.expectedDate && (
+          {errors.expectedDate && (
             <p className="text-red-500 text-sm mt-1">{errors.expectedDate.message}</p>
           )}
         </div>
